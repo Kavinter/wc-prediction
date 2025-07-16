@@ -59,7 +59,7 @@ File Structure
     .
     ├── table_creation.py                  # Creates and saves World Cup group tables (pickle)
     ├── bs_scraping.py                     # Scrapes World Cup match data using BeautifulSoup
-    ├── selenium_missing_data_scraping.py # Uses Selenium to scrape missing World Cup match data
+    ├── selenium_missing_data_scraping.py  # Uses Selenium to scrape missing World Cup match data
     ├── data_scraping.py                   # Cleans and merges raw World Cup data files
     ├── wc_prediction.py                   # Predicts match outcomes and tournament progression
     ├── dict_table.pkl                     # Serialized group data table
