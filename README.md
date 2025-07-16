@@ -1,94 +1,68 @@
 World Cup Predictor
-Project Overview
 
-This project is a Python-based application designed to predict the outcomes of FIFA World Cup matches. Using historical data, team statistics, and probabilistic models, it simulates match results and forecasts winners for each stage of the tournament, including group stages, knockouts, and finals.
+This project is a data-driven Python application that predicts outcomes of FIFA World Cup matches and simulates tournament progression. Using historical match data, group stage results, and statistical modeling, it estimates match outcomes and advances teams through knockout rounds — all the way to the final.
 Features
 
-    Data Collection:
+    Web Scraping: Collects historical FIFA World Cup match results (from 1930–2022) using both BeautifulSoup and Selenium.
 
-        Scrapes historical World Cup match results and fixtures from Wikipedia.
+    Data Cleaning & Preprocessing: Cleans raw score data, handles missing entries, and structures it into usable datasets.
 
-        Handles missing data with Selenium web scraping to fill gaps.
+    Group Stage Simulation: Calculates group standings by simulating fixtures and assigning points based on Poisson-distributed outcomes.
 
-    Data Cleaning and Preparation:
+    Knockout Stage Prediction: Simulates each knockout round (Round of 16 to Final) based on previous winners.
 
-        Merges multiple datasets, removes duplicates, and processes match scores.
+    Statistical Modeling: Uses team-level scoring/conceding averages to predict match results using the Poisson distribution.
 
-        Calculates team strengths based on historical goals scored and conceded.
-
-    Prediction Model:
-
-        Implements a Poisson distribution-based algorithm to estimate match outcome probabilities.
-
-        Predicts points for home and away teams in group matches.
-
-        Simulates knockout rounds by iteratively determining winners and updating fixtures.
-
-    Output:
-
-        Generates CSV files for raw data, cleaned data, and match predictions.
-
-        Prints final predicted winners of knockout rounds and the tournament.
+    Fixture Integration: Integrates real 2022 FIFA World Cup fixture data for simulations.
 
 Technologies Used
 
-    Python 3
+    Python: Core language for logic, scraping, and processing.
 
-    Libraries:
+    Pandas: For data manipulation and analysis.
 
-        pandas (data handling)
+    BeautifulSoup: For static HTML scraping from Wikipedia.
 
-        requests & BeautifulSoup (web scraping)
+    Selenium: For scraping dynamic content when needed.
 
-        selenium (dynamic web scraping for missing data)
+    SciPy (Poisson Distribution): For probabilistic match outcome modeling.
 
-        scipy.stats (Poisson distribution for predictions)
-
-        pickle (data serialization)
+    Pickle: To serialize and save group table data.
 
 How to Use
 
-    Clone the repository:
+Clone the repository:
 
-git clone https://github.com/Kavinter/world-cup-predictor.git
+git clone https://github.com/yourusername/world-cup-predictor.git
 
-Install required packages:
+Run the scripts in the following order for full simulation:
 
-pip install pandas requests beautifulsoup4 selenium scipy
+    table_creation.py – Creates group tables from 2022 World Cup.
 
-Run the scripts in order:
+    bs_scraping.py – Scrapes match results from 1930 to 2018 using BeautifulSoup.
 
-    Data scraping:
-    Scrape historical data and save it locally.
+    selenium_missing_data_scraping.py – Scrapes missing 1990 data with Selenium.
 
-    Data cleaning:
-    Clean and preprocess the scraped data.
+    data_scraping.py – Cleans, merges, and processes the full dataset.
 
-    Prediction:
-    Run the prediction model to simulate the World Cup results.
+    wc_prediction.py – Runs predictions for group and knockout stages and prints the final results.
 
-Check generated CSV files:
+Make sure to install the required packages:
 
-    Raw data files (fifa_worldcup_data.csv, fifa_missing_data.csv)
+pip install pandas beautifulsoup4 lxml selenium scipy
 
-    Cleaned dataset (cleaned_df_worldcup_data.csv)
-
-    Match fixtures and predictions (fifa_worldcup_fixture.csv)
-
-    Final predictions printed in console
-
-
+For Selenium to work, ensure you have Geckodriver installed and updated in your system path.
 File Structure
 
 .
-├── table_creation.py                # Creates and saves World Cup group tables (pickle)
-├── bs_scraping.py                  # Scrapes World Cup match data using BeautifulSoup
-├── selenium_missing_data_scraping.py  # Uses Selenium to scrape missing World Cup match data
-├── data_scraping.py                # Cleans and merges raw World Cup data files
-├── wc_prediction.py                # Predicts match outcomes and tournament progression
-├── dict_table.pkl                  # Serialized group data table
-├── fifa_worldcup_data.csv          # Raw match data CSV
-├── fifa_missing_data.csv           # Missing matches scraped with Selenium
-├── cleaned_df_worldcup_data.csv   # Cleaned and processed data CSV
-├── fifa_worldcup_fixture.csv       # Match fixtures CSV
-└── README.md                      # This documentation file    
+├── table_creation.py                  # Creates and saves World Cup group tables (pickle)
+├── bs_scraping.py                     # Scrapes World Cup match data using BeautifulSoup
+├── selenium_missing_data_scraping.py # Uses Selenium to scrape missing World Cup match data
+├── data_scraping.py                   # Cleans and merges raw World Cup data files
+├── wc_prediction.py                   # Predicts match outcomes and tournament progression
+├── dict_table.pkl                     # Serialized group data table
+├── fifa_worldcup_data.csv             # Raw match data CSV
+├── fifa_missing_data.csv              # Missing matches scraped with Selenium
+├── cleaned_df_worldcup_data.csv       # Cleaned and processed data CSV
+├── fifa_worldcup_fixture.csv          # Match fixtures CSV
+└── README.md                          # This documentation file
